@@ -1,0 +1,38 @@
+{% extends "layouts/base.html" %}
+{% load static %}
+
+{% block title %} Tables {% endblock title %}
+
+{% block stylesheets %}
+<link rel="stylesheet" href="{% static 'main.css' %}">
+{% endblock stylesheets %}
+
+{% block content %}
+<h1>Tables Page</h1>
+<table>
+  <tr>
+    <th>ID</th>
+    <th>Name</th>
+    <th>Email</th>
+    <th>Age</th>
+  </tr>
+  <tr>
+    <td>1</td>
+    <td>ghala</td>
+    <td>ghala@email.com</td>
+    <td>20</td>
+  </tr>
+  <tr>
+    <td>2</td>
+    <td>rana</td>
+    <td>rana@email.com</td>
+    <td>23</td>
+  </tr>
+  <tr>
+    <td>3</td>
+    <td>amaal</td>
+    <td>amaal@email.com</td>
+    <td>40</td>
+  </tr>
+</table>
+{% endblock content %}

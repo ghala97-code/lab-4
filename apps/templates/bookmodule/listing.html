@@ -1,0 +1,36 @@
+{% extends "layouts/base.html" %}
+{% load static %}
+
+{% block title %} Listing {% endblock title %}
+
+{% block stylesheets %}
+<link rel="stylesheet" href="{% static 'main.css' %}">
+{% endblock stylesheets %}
+
+{% block content %}
+<h1>Listing Page</h1>
+
+<h2>Unordered List</h2>
+<ul>
+  <li>Item 1
+    <ul>
+      <li>Sub Item 1</li>
+      <li>Sub Item 2</li>
+    </ul>
+  </li>
+  <li>Item 2</li>
+  <li>Item 3</li>
+</ul>
+
+<h2>Ordered List</h2>
+<ol>
+  <li>First
+    <ol>
+      <li>Sub First</li>
+      <li>Sub Second</li>
+    </ol>
+  </li>
+  <li>Second</li>
+  <li>Third</li>
+</ol>
+{% endblock content %}

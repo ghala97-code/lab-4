@@ -1,0 +1,15 @@
+{% extends "layouts/base.html" %}
+{% load static %}
+
+{% block title %} Links Page {% endblock title %}
+
+{% block stylesheets %}
+<link rel="stylesheet" href="{% static 'main.css' %}">
+{% endblock stylesheets %}
+
+{% block content %}
+<h1>Links Page</h1>
+<a href="https://www.google.com">Google</a>
+<a href="https://www.github.com">GitHub</a>
+<a href="https://www.w3schools.com">W3Schools</a>
+{% endblock content %}

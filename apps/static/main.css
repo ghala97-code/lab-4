@@ -1,0 +1,58 @@
+.topnav {
+  background-color: #eeeeee;
+  width: 100%;
+}
+
+.topnav a {
+  color: #000000;
+  text-align: center;
+  margin-right: 25px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.topnav a.active {
+  color: #008CBA;
+}
+
+
+a {
+  padding: 10px;
+  text-align: center;
+  display: block;
+  color: white;
+  background-color: #008CBA;
+}
+
+a:visited {
+  color: lightgray;
+}
+
+a:hover {
+  background-color: #005f7a;
+}
+
+a:active {
+  background-color: red;
+}
+
+/* Tables Task 4 */
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  border: 1px solid black;
+  padding: 8px;
+  text-align: center;
+}
+
+th {
+  background-color: #008CBA;
+  color: white;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
