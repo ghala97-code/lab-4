@@ -1,3 +1,4 @@
+/* Navigation */
 .topnav {
   background-color: #eeeeee;
   width: 100%;
@@ -15,44 +16,99 @@
   color: #008CBA;
 }
 
-
-a {
-  padding: 10px;
-  text-align: center;
+/* Task 1 - Links */
+.btn-green {
   display: block;
-  color: white;
-  background-color: #008CBA;
-}
-
-a:visited {
-  color: lightgray;
-}
-
-a:hover {
-  background-color: #005f7a;
-}
-
-a:active {
-  background-color: red;
-}
-
-/* Tables Task 4 */
-table {
   width: 100%;
-  border-collapse: collapse;
+  padding: 20px;
+  text-align: center;
+  background-color: rgb(84, 208, 84);
+  color: red;
+  text-decoration: none;
+  margin-bottom: 5px;
+  font-size: 18px;
 }
 
-th, td {
+.btn-darkgray {
+  display: block;
+  width: 100%;
+  padding: 20px;
+  text-align: center;
+  background-color: #474646;
+  color: rgb(192, 192, 14);
+  text-decoration: none;
+  margin-bottom: 5px;
+  font-size: 18px;
+}
+
+.btn-black {
+  display: block;
+  width: 100%;
+  padding: 20px;
+  text-align: center;
+  background-color: black;
+  color: white;
+  text-decoration: none;
+  margin-bottom: 5px;
+  font-size: 18px;
+}
+
+.btn-green:visited { color: red; }
+.btn-darkgray:visited { color: yellow; }
+.btn-black:visited { color: white; }
+
+.btn-green:hover { opacity: 0.8; }
+.btn-darkgray:hover { opacity: 0.8; }
+.btn-black:hover { opacity: 0.8; }
+
+.btn-green:active { opacity: 0.5; }
+.btn-darkgray:active { opacity: 0.5; }
+.btn-black:active { opacity: 0.5; }
+
+/* Task 2 - Text Formatting */
+h1.format-title {
+  color: #1a6b1a;
+  background-color: #fffde7;
+  text-align: center;
+  padding: 10px;
+}
+
+/* Task 3 - Lists */
+h1.listing-title {
+  background-color: #4a8a85;
+  color: white;
+  padding: 15px;
+}
+/* Task 4 - Tables */
+.table1 {
+  border-collapse: collapse;
+  margin: auto;
+  text-align: center;
+}
+
+.table1 th, .table1 td {
+  border: 1px solid black;
+  padding: 8px;
+}
+
+.table1 th, .table1 td {
+  border: 3px double black;
+  padding: 8px;
+}
+
+.table2 {
+  border-collapse: collapse;
+  width: 80%;
+  margin: auto;
+}
+
+.table2 th, .table2 td {
   border: 1px solid black;
   padding: 8px;
   text-align: center;
 }
 
-th {
-  background-color: #008CBA;
-  color: white;
-}
-
-tr:nth-child(even) {
-  background-color: #f2f2f2;
+.camel-header {
+  text-align: center;
+  padding: 15px;
 }

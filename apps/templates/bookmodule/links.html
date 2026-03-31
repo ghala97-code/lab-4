@@ -8,8 +8,15 @@
 {% endblock stylesheets %}
 
 {% block content %}
-<h1>Links Page</h1>
-<a href="https://www.google.com">Google</a>
-<a href="https://www.github.com">GitHub</a>
-<a href="https://www.w3schools.com">W3Schools</a>
+<h1>Links</h1>
+
+<!-- Green button - opens in new tab -->
+<a class="btn-green" href="https://www.qu.edu.sa" target="_blank">Qassim University - New Tab</a>
+
+<!-- Dark gray button - opens in same tab -->
+<a class="btn-darkgray" href="https://www.qu.edu.sa" target="_self">Qassim University - Same Tab</a>
+
+<!-- Black button - opens in same tab -->
+<a class="btn-black" href="https://www.qu.edu.sa" target="_self">Qassim University - Same Page</a>
+
 {% endblock content %}

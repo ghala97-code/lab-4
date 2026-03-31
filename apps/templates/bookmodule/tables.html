@@ -8,31 +8,75 @@
 {% endblock stylesheets %}
 
 {% block content %}
-<h1>Tables Page</h1>
-<table>
+
+<!-- Table 1 -->
+<table class="table1">
+  <caption><b>Table 1: Table of Fruits and Their Prices</b></caption>
   <tr>
-    <th>ID</th>
-    <th>Name</th>
-    <th>Email</th>
-    <th>Age</th>
+    <th>Fruit</th>
+    <th>Price</th>
   </tr>
   <tr>
-    <td>1</td>
-    <td>ghala</td>
-    <td>ghala@email.com</td>
-    <td>20</td>
+    <td>Apple</td>
+    <td>$0.25</td>
   </tr>
   <tr>
-    <td>2</td>
-    <td>rana</td>
-    <td>rana@email.com</td>
-    <td>23</td>
+    <td>Orange</td>
+    <td>$0.50</td>
   </tr>
   <tr>
-    <td>3</td>
-    <td>amaal</td>
-    <td>amaal@email.com</td>
-    <td>40</td>
+    <td>Banana</td>
+    <td>$1.00</td>
+  </tr>
+  <tr>
+    <td>Pineapple</td>
+    <td>$2.00</td>
+  </tr>
+  <tr>
+    <td><b>Total</b></td>
+    <td><b>$3.75</b></td>
   </tr>
 </table>
+
+<br>
+<p>Table 2: A more complex sample table</p>
+
+<!-- Table 2 -->
+<table class="table2">
+  <tr>
+    <td rowspan="2"><img src="{% static 'des.png' %}" width="200" height="200" alt="desert"></td>
+    <td colspan="4" class="camel-header">
+      <b>Camelid comparison</b><br>
+      Approximate as of 6/2011
+    </td>
+  </tr>
+  <tr>
+    <th># of humps</th>
+    <th>Indigenous region</th>
+    <th>Spits?</th>
+    <th>Produces wool?</th>
+  </tr>
+  <tr>
+    <td><b>Dromedary</b></td>
+    <td>1</td>
+    <td>Arabian Peninsula</td>
+    <td>Yes</td>
+    <td>Yes</td>
+  </tr>
+  <tr>
+    <td><b>Camels (bactrian)</b></td>
+    <td>2</td>
+    <td>Africa/Asia</td>
+    <td>Yes</td>
+    <td>Yes</td>
+  </tr>
+  <tr>
+    <td><b>Llamas</b></td>
+    <td>1</td>
+    <td>Andes Mountains</td>
+    <td>Yes</td>
+    <td>Yes</td>
+  </tr>
+</table>
+
 {% endblock content %}
