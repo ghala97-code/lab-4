@@ -1,12 +1,7 @@
-from urllib import request
-from .models import Book
-from django.http import HttpResponse
 from django.shortcuts import render
-from django.db.models import Q, Count, Sum, Avg, Max, Min
-from .models import Book, Student, Address
-
-
-#from libraryproject.apps.bookmodule.models import Book
+from django.http import HttpResponse
+from .models import Book, Publisher, Author
+from django.db.models import Count, Sum, Avg, Max, Min, ExpressionWrapper, F, FloatField
 
 def index(request):
     return render(request, "bookmodule/index.html")
@@ -58,46 +53,42 @@ def search_books(request):
     return render(request, 'bookmodule/search.html')
 
 
-def simple_query(request):
-    mybooks=Book.objects.filter(title__icontains='and') 
-    return render(request, 'bookmodule/bookList.html', {'books':mybooks})
 
-def complex_query(request):
-    mybooks=books=Book.objects.filter(author__isnull = False).filter(title__icontains='and').filter(edition__gte = 2).exclude(price__lte = 100)[:10]
-    if len(mybooks)>=1:
-        return render(request, 'bookmodule/bookList.html', {'books':mybooks})
-    else:
-        return render(request, 'bookmodule/index.html')
-
-def lab8_task1(request):
-    mybooks = Book.objects.filter(Q(price__lte=80))
-    return render(request, 'bookmodule/bookList.html', {'books': mybooks})
-
-def lab8_task2(request):
-    query = Q(edition__gt=3) & (Q(title__icontains='qu') | Q(author__icontains='qu'))
-    mybooks = Book.objects.filter(query)
-    return render(request, 'bookmodule/bookList.html', {'books': mybooks})
-
-def lab8_task3(request):
-    query = ~Q(edition__gt=3) & ~(Q(title__icontains='qu') | Q(author__icontains='qu'))
-    mybooks = Book.objects.filter(query)
-    return render(request, 'bookmodule/bookList.html', {'books': mybooks})
-
-def lab8_task4(request):
-    mybooks = Book.objects.all().order_by('title')
-    return render(request, 'bookmodule/bookList.html', {'books': mybooks})
-
-def lab8_task5(request):
-    stats = Book.objects.aggregate(
-        total_books=Count('id'),
-        total_price=Sum('price'),
-        avg_price=Avg('price'),
-        max_price=Max('price'),
-        min_price=Min('price')
+def lab9_task1(request):
+    total_q = Book.objects.aggregate(total=Sum('quantity'))['total'] or 1
+    books = Book.objects.annotate(
+        availability_pct=ExpressionWrapper((F('quantity') * 100.0) / total_q, output_field=FloatField())
     )
-    return render(request, 'bookmodule/book_stats.html', {'stats': stats})
+    print("\n--- Task 1: Percentage ---")
+    for b in books: print(f"{b.title}: {b.availability_pct:.2f}%")
+    return HttpResponse("Task 1 Done. Check Terminal!")
 
+def lab9_task2(request):
+    publishers = Publisher.objects.annotate(total_stock=Sum('book__quantity'))
+    print("\n--- Task 2: Stock ---")
+    for p in publishers: print(f"{p.name}: {p.total_stock}")
+    return HttpResponse("Task 2 Done. Check Terminal!")
 
-def lab8_task7(request):
-    cities = Address.objects.annotate(student_count=Count('student'))
-    return render(request, 'bookmodule/city_stats.html', {'cities': cities})
+def lab9_task3(request):
+    publishers = Publisher.objects.annotate(oldest=Min('book__pubdate'))
+    print("\n--- Task 3: Oldest Book ---")
+    for p in publishers: print(f"{p.name}: {p.oldest}")
+    return HttpResponse("Task 3 Done. Check Terminal!")
+
+def lab9_task4(request):
+    publishers = Publisher.objects.annotate(avg_p=Avg('book__price'), min_p=Min('book__price'), max_p=Max('book__price'))
+    print("\n--- Task 4: Price Stats ---")
+    for p in publishers: print(f"{p.name} -> Avg: {p.avg_p}, Min: {p.min_p}, Max: {p.max_p}")
+    return HttpResponse("Task 4 Done. Check Terminal!")
+
+def lab9_task5(request):
+    publishers = Publisher.objects.filter(book__rating__gt=3).annotate(high_rated_count=Count('book')).distinct()
+    print("\n--- Task 5: High Rated ---")
+    for p in publishers: print(f"{p.name}: {p.high_rated_count} books")
+    return HttpResponse("Task 5 Done. Check Terminal!")
+
+def lab9_task6(request):
+    publishers = Publisher.objects.filter(book__price__gt=50, book__quantity__gte=1, book__quantity__lte=5).annotate(count_books=Count('book')).distinct()
+    print("\n--- Task 6: Filtered ---")
+    for p in publishers: print(f"{p.name}: {p.count_books} books")
+    return HttpResponse("Task 6 Done. Check Terminal!")
