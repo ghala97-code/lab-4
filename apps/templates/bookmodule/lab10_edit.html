@@ -1,0 +1,6 @@
+<form method="post">
+    {% csrf_token %}
+    Title: <input type="text" name="title" value="{{ obj.title }}">
+    Price: <input type="number" name="price" value="{{ obj.price }}">
+    <button type="submit">Update (Manual)</button>
+</form>

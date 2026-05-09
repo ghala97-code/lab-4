@@ -1,0 +1,14 @@
+<h2>Books List</h2>
+<a href="/books/lab10/addbook">Add New Book</a>
+<hr>
+<ul>
+    {% for b in books %}
+    <li>
+        {{ b.title }} (${{ b.price }}) 
+        | <a href="/books/lab10/editbook/{{ b.id }}">Edit</a> 
+        | <a href="/books/lab10/deletebook/{{ b.id }}" onclick="return confirm('Are you sure?')">Delete</a>
+    </li>
+    {% empty %}
+    <li>No books found. <a href="/books/lab10/addbook">Add one now!</a></li>
+    {% endfor %}
+</ul>
