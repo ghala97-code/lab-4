@@ -18,6 +18,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import  path ,include
 
+from libraryproject import settings
+from django.conf import settings
+from django.conf.urls.static import static
+
 urlpatterns = [
     #path('admin/', admin.site.urls),
     #path('', apps.bookmodule.views.index),
@@ -25,5 +29,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('books/', include("apps.bookmodule.urls")), 
     path('users/', include("apps.usermodule.urls")),
+    path('admin/', admin.site.urls),
+    path('students/', include('apps.bookmodule.urls')),
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
-]

@@ -1,11 +1,13 @@
 from django.urls import path
 from . import views
+from django.contrib import admin
+from django.urls import path, include
 
 urlpatterns = [
     #path('', views.index),
     #path('index2/<int:val1>/', views.index2),
     path('<int:bookId>', views.viewbook),
-    path('', views.index, name= "books.index"),
+    path('im', views.index, name= "books.index"),
     path('list_books/', views.list_books, name= "books.list_books"),
     path('<int:bookId>/', views.viewbook, name="books.view_one_book"),
     path('html5/links/', views.links, name='books.links'),
@@ -28,6 +30,10 @@ urlpatterns = [
     path('lab10_part2/listbooks', views.lab10_part2_listbooks),
     path('lab10_part2/addbook', views.lab10_part2_addbook),
     path('lab10_part2/editbook/<int:id>', views.lab10_part2_editbook),
-
+    path('', views.student_list, name='student_list'),
+    path('add/', views.student_add, name='student_add'),
+    path('update/<int:pk>/', views.student_update, name='student_update'),
+    path('delete/<int:pk>/', views.student_delete, name='student_delete'),
 ]
+
 

@@ -1,8 +1,9 @@
 from django.http import HttpResponse
-from .models import Book, Publisher, Author
+from .models import Book, Publisher, Author , Student, Address, Student2, Address2, Course
 from django.db.models import Count, Sum, Avg, Max, Min, ExpressionWrapper, F, FloatField
 from django.shortcuts import render, redirect, get_object_or_404
-from .forms import BookForm
+from .forms import CourseForm, StudentForm, Student2Form, AddressForm, BookForm
+
 
 def index(request):
     return render(request, "bookmodule/index.html")
@@ -158,3 +159,53 @@ def lab10_part2_editbook(request, id):
     else:
         form = BookForm(instance=book)
     return render(request, 'bookmodule/lab10_edit.html', {'form': form})
+
+from django.shortcuts import render, redirect, get_object_or_404
+from .models import Student
+from .forms import StudentForm
+
+# 1
+def student_list(request):
+    students = Student.objects.all()
+    return render(request, 'student_list.html', {'students': students})
+
+# 2
+def student_add(request):
+    if request.method == 'POST':
+        form = StudentForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('student_list')
+    else:
+        form = StudentForm()
+    return render(request, 'student_form.html', {'form': form, 'title': 'Add Student'})
+
+# 3
+def student_update(request, pk):
+    student = get_object_or_404(Student, pk=pk)
+    if request.method == 'POST':
+        form = StudentForm(request.POST, instance=student)
+        if form.is_valid():
+            form.save()
+            return redirect('student_list')
+    else:
+        form = StudentForm(instance=student)
+    return render(request, 'student_form.html', {'form': form, 'title': 'Update Student'})
+
+# 4
+def student_delete(request, pk):
+    student = get_object_or_404(Student, pk=pk)
+    if request.method == 'POST':
+        student.delete()
+        return redirect('student_list')
+    return render(request, 'student_confirm_delete.html', {'student': student})
+
+
+def add_course(request):
+    if request.method == 'POST':
+        form = CourseForm(request.POST, request.FILES) 
+        if form.is_valid():
+            form.save()
+            return redirect('student_list') 
+        form = CourseForm()
+    return render(request, 'course_form.html', {'form': form})
