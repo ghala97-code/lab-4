@@ -34,7 +34,6 @@ class Student(models.Model):
     def __str__(self):
         return self.name
     
-
 class Address2(models.Model):
     city = models.CharField(max_length=100)
     street = models.CharField(max_length=100)
@@ -49,8 +48,7 @@ class Student2(models.Model):
     addresses = models.ManyToManyField(Address2) 
 
     def __str__(self):
-        return self.name
-    
+        return self.name 
 
 class Course(models.Model):
     title = models.CharField(max_length=200)

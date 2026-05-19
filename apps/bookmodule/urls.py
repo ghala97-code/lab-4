@@ -30,10 +30,13 @@ urlpatterns = [
     path('lab10_part2/listbooks', views.lab10_part2_listbooks),
     path('lab10_part2/addbook', views.lab10_part2_addbook),
     path('lab10_part2/editbook/<int:id>', views.lab10_part2_editbook),
-    path('', views.student_list, name='student_list'),
-    path('add/', views.student_add, name='student_add'),
-    path('update/<int:pk>/', views.student_update, name='student_update'),
-    path('delete/<int:pk>/', views.student_delete, name='student_delete'),
+    path('students/', views.student_list, name='student_list'),
+    path('students/add/', views.student_add, name='student_add'),
+    path('students/update/<int:pk>/', views.student_update, name='student_update'),
+    path('students/delete/<int:pk>/', views.student_delete, name='student_delete'),
+    path('users/register/', views.register_view, name='register'), 
+    path('users/login/', views.login_view, name='login'),         
+    path('users/logout/', views.logout_view, name='logout'),
 ]
 
 

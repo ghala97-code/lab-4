@@ -1,8 +1,14 @@
+from pyexpat.errors import messages
+
 from django.http import HttpResponse
 from .models import Book, Publisher, Author , Student, Address, Student2, Address2, Course
 from django.db.models import Count, Sum, Avg, Max, Min, ExpressionWrapper, F, FloatField
 from django.shortcuts import render, redirect, get_object_or_404
 from .forms import CourseForm, StudentForm, Student2Form, AddressForm, BookForm
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django.contrib.auth import login, logout
+from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 
 
 def index(request):
@@ -209,3 +215,42 @@ def add_course(request):
             return redirect('student_list') 
         form = CourseForm()
     return render(request, 'course_form.html', {'form': form})
+
+
+
+def register_view(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'You have successfully registered!')
+            return redirect('login')
+        else:
+            messages.error(request, 'Registration error. Please check the fields.')
+    else:
+        form = UserCreationForm()
+    return render(request, 'bookmodule/register.html', {'form': form})
+
+# Task 2 & Task 5
+def login_view(request):
+    if request.method == 'POST':
+        form = AuthenticationForm(data=request.POST)
+        if form.is_valid():
+            user = form.get_user()
+            login(request, user)
+            messages.success(request, 'Login successfully!') 
+            return redirect('view_books')
+        else:
+            messages.error(request, 'Error logging in. Invalid username or password.')
+    else:
+        form = AuthenticationForm()
+    return render(request, 'bookmodule/login.html', {'form': form})
+
+# Task 4
+def logout_view(request):
+    logout(request)
+    return redirect('login')
+# Task 3
+@login_required
+def view_books(request):
+    return render(request, 'bookmodule/view_books.html')
