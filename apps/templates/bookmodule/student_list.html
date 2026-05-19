@@ -1,0 +1,31 @@
+{% extends 'layouts/base.html' %}
+
+{% block content %}
+<h2>Welcome to Student Management Dashboard</h2>
+<p>You have successfully accessed this protected page because you are logged in!</p>
+
+<h3>Student List:</h3>
+<table border="1" cellpadding="8" style="border-collapse: collapse; width: 50%;">
+    <thead>
+        <tr style="background-color: #f2f2f2;">
+            <th>Student Name</th>
+            <th>ID / Academic Number</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for student in students %}
+            <tr>
+                <td>{{ student.name }}</td>
+                <td>{{ student.id }}</td>
+            </tr>
+        {% empty %}
+            <tr>
+                <td colspan="2" style="text-align: center; color: gray;">No students found in the database yet.</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<br>
+<p>To end your session, click the <strong>Logout</strong> link in the navigation bar above.</p>
+{% endblock %}

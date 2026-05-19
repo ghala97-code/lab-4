@@ -239,7 +239,7 @@ def login_view(request):
             user = form.get_user()
             login(request, user)
             messages.success(request, 'Login successfully!') 
-            return redirect('view_books')
+            return redirect('/students/')
         else:
             messages.error(request, 'Error logging in. Invalid username or password.')
     else:
@@ -254,3 +254,11 @@ def logout_view(request):
 @login_required
 def view_books(request):
     return render(request, 'bookmodule/view_books.html')
+
+
+@login_required
+def student_list_view(request):
+    
+    students = Student.objects.all() 
+    
+    return render(request, 'bookmodule/student_list.html', {'students': students})
